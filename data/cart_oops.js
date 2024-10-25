@@ -227,6 +227,7 @@ function Cart(localStorageKey){
   return cart;
 }
 
+
 // Get the cart from the local storage
 // businessCart.loadFromStorage();
 // console.log(businessCart);
@@ -237,7 +238,8 @@ function Cart(localStorageKey){
 const amazonNormalCart = new Cart('cart-oops');
 const amazonBusinessCart = new Cart('cart-business');
 
+
+
 // Calling the object created
 amazonNormalCart.loadFromStorage();
 amazonBusinessCart.loadFromStorage();
-// console.log(amazonBusinessCart);

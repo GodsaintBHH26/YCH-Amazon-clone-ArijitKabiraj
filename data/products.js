@@ -8,6 +8,45 @@ export function getProduct(productId) {
   return matchingProduct;
 }
 
+// Using class to display all the data from the product array to the webpage
+class Product {
+  id;
+  image;
+  rating;
+  priceCents;
+  name;
+  keywords;
+
+  constructor(productDetails) {
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+    this.name = productDetails.name;
+    this.keywords = productDetails.keywords;
+  }
+
+  extraInfoHtml(){
+    return ``;
+  }
+}
+
+// Inheritance
+class Clothing extends Product {
+  sizeChartLink;
+  constructor(productDetails) {
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  // Method Overridding
+  extraInfoHtml() {
+    return `
+    <a href="${this.sizeChartLink}" target="blank">Size Chart</a>
+    `;
+  }
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -479,4 +518,10 @@ export const products = [
     priceCents: 2400,
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
   },
-];
+].map((productDetails) => {
+  if (productDetails.type == "clothing") {
+    return new Clothing(productDetails);
+  } else {
+    return new Product(productDetails);
+  }
+});
